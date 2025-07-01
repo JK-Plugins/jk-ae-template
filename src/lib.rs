@@ -89,7 +89,7 @@ impl AdobePluginGlobal for Plugin {
 
 impl Plugin {
     fn about(&mut self, out_data: &mut OutData) {
-        out_data.set_return_msg("{{plugin_name}}".to_string());
+        out_data.set_return_msg("{{plugin_name}}");
     }
 
     fn global_setup(&mut self, in_data: &InData) -> Result<(), ae::Error> {
