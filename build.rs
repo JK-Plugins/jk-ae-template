@@ -9,7 +9,7 @@ fn main() {
     const EFFECT_VERSION_MINOR: u32 = 0;
     const EFFECT_VERSION_PATCH: u32 = 1;
 
-    const EFFECT_NAME: &str = "{{project_name}}";
+    const EFFECT_NAME: &str = "{{plugin_name}}";
 
     pipl::plugin_build(vec![
         Property::Kind(PIPLType::AEEffect),

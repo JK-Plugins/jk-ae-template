@@ -1,4 +1,4 @@
-BuildName := {{project_name}}
+BuildName := {{project-name}}
 PluginName := {{plugin_name}}
 BundleIdentifier := "com.adobe.AfterEffects.{% raw %}{{BuildName}}{% endraw %}"
 BinaryName       := replace(lowercase(BuildName), "-", "_")

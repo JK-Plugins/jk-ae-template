@@ -15,6 +15,11 @@ cargo install cargo-generate
 cargo generate --git https://github.com/cargo-generate/cargo-generate.git
 ```
 
+コマンド実行時に聞かれるものについてです。
+project-name
+plugin_name
+plugin_category
+
 
 
 ## このテンプレート自体を変更する際の注意点
