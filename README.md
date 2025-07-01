@@ -12,7 +12,7 @@ cargo install cargo-generate
 テンプレートから新しいプロジェクトを作成するには、以下のコマンドを実行します。
 
 ```sh
-cargo generate --git https://github.com/cargo-generate/cargo-generate.git
+cargo generate --git https://github.com/JK-Plugins/jk-ae-template.git
 ```
 
 コマンド実行時に聞かれるものについてです。
