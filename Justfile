@@ -1,5 +1,5 @@
-BuildName := {{crate_name}}
-PluginName := {{plugin_name}}
+BuildName := "{{crate_name}}"
+PluginName := "{{plugin_name}}"
 BundleIdentifier := "com.adobe.AfterEffects.{% raw %}{{BuildName}}{% endraw %}"
 BinaryName       := replace(lowercase(BuildName), "-", "_")
 set windows-shell := ["powershell.exe", "-NoLogo", "-Command"]
