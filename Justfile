@@ -26,13 +26,12 @@ release:
 [macos]
 build:
     cargo build
-    "just -f {% raw %}{{justfile()}}{% endraw %} create_bundle debug {% raw %}{{TargetDir}}{% endraw %}"
+    just -f {% raw %}{{justfile()}}{% endraw %} create_bundle debug {% raw %}{{TargetDir}}{% endraw %}
 
 [macos]
 release:
     cargo build --release
-    "just -f {% raw %}{{justfile()}}{% endraw %} create_bundle release {% raw %}{{TargetDir}}{% endraw %}"
-
+    just -f {% raw %}{{justfile()}}{% endraw %} create_bundle release {% raw %}{{TargetDir}}{% endraw %}
 [macos]
 create_bundle profile TargetDir:
     #!/bin/bash
@@ -55,17 +54,17 @@ create_bundle profile TargetDir:
         cargo build --release --target x86_64-apple-darwin
         cargo build --release --target aarch64-apple-darwin
 
-        cp "{% raw %}{{TargetDir}}{% endraw %}/x86_64-apple-darwin/release/{% raw %}{{BinaryName}}{% endraw %}.rsrc" "{% raw %}{{TargetDir}}{% endraw %}/{% raw %}{{profile}}{% endraw %}/{% raw %}{{PluginName}}{% endraw %}.plugin/Contents/Resources/{% raw %}{{BuildName}}{% endraw %}.rsrc"
-        lipo "{% raw %}{{TargetDir}}{% endraw %}/{x86_64,aarch64}-apple-darwin/release/lib{% raw %}{{BinaryName}}{% endraw %}.dylib" -create -output "{% raw %}{{TargetDir}}{% endraw %}/{% raw %}{{profile}}{% endraw %}/{% raw %}{{PluginName}}{% endraw %}.plugin/Contents/MacOS/{% raw %}{{BuildName}}{% endraw %}.dylib"
-        mv "{% raw %}{{TargetDir}}{% endraw %}/{% raw %}{{profile}}{% endraw %}/{% raw %}{{PluginName}}{% endraw %}.plugin/Contents/MacOS/{% raw %}{{BuildName}}{% endraw %}.dylib" "{% raw %}{{TargetDir}}{% endraw %}/{% raw %}{{profile}}{% endraw %}/{% raw %}{{PluginName}}{% endraw %}.plugin/Contents/MacOS/{% raw %}{{BuildName}}{% endraw %}"
+        cp "{% raw %}{{TargetDir}}{% endraw %}/x86_64-apple-darwin/release/{% raw %}{{BinaryName}}{% endraw %}.rsrc" "{% raw %}{{TargetDir}}{% endraw %}/{% raw %}{{profile}}{% endraw %}/{% raw %}{{PluginName}}{% endraw %}.plugin/Contents/Resources/{% raw %}{{PluginName}}{% endraw %}.rsrc"
+        lipo "{% raw %}{{TargetDir}}{% endraw %}/{x86_64,aarch64}-apple-darwin/release/lib{% raw %}{{BinaryName}}{% endraw %}.dylib" -create -output "{% raw %}{{TargetDir}}{% endraw %}/{% raw %}{{profile}}{% endraw %}/{% raw %}{{PluginName}}{% endraw %}.plugin/Contents/MacOS/{% raw %}{{PluginName}}{% endraw %}.dylib"
+        mv "{% raw %}{{TargetDir}}{% endraw %}/{% raw %}{{profile}}{% endraw %}/{% raw %}{{PluginName}}{% endraw %}.plugin/Contents/MacOS/{% raw %}{{PluginName}}{% endraw %}.dylib" "{% raw %}{{TargetDir}}{% endraw %}/{% raw %}{{profile}}{% endraw %}/{% raw %}{{PluginName}}{% endraw %}"
     else
-        cp "{% raw %}{{TargetDir}}{% endraw %}/{% raw %}{{profile}}{% endraw %}/{% raw %}{{BuildName}}{% endraw %}.rsrc" "{% raw %}{{TargetDir}}{% endraw %}/{% raw %}{{profile}}{% endraw %}/{% raw %}{{PluginName}}{% endraw %}.plugin/Contents/Resources/{% raw %}{{BuildName}}{% endraw %}.rsrc"
-        cp "{% raw %}{{TargetDir}}{% endraw %}/{% raw %}{{profile}}{% endraw %}/lib{% raw %}{{BinaryName}}{% endraw %}.dylib" "{% raw %}{{TargetDir}}{% endraw %}/{% raw %}{{profile}}{% endraw %}/{% raw %}{{PluginName}}{% endraw %}.plugin/Contents/MacOS/{% raw %}{{BuildName}}{% endraw %}"
+        cp "{% raw %}{{TargetDir}}{% endraw %}/{% raw %}{{profile}}{% endraw %}/{% raw %}{{BuildName}}{% endraw %}.rsrc" "{% raw %}{{TargetDir}}{% endraw %}/{% raw %}{{profile}}{% endraw %}/{% raw %}{{PluginName}}{% endraw %}.plugin/Contents/Resources/{% raw %}{{PluginName}}{% endraw %}.rsrc"
+        cp "{% raw %}{{TargetDir}}{% endraw %}/{% raw %}{{profile}}{% endraw %}/lib{% raw %}{{BinaryName}}{% endraw %}.dylib" "{% raw %}{{TargetDir}}{% endraw %}/{% raw %}{{profile}}{% endraw %}/{% raw %}{{PluginName}}{% endraw %}.plugin/Contents/MacOS/{% raw %}{{PluginName}}{% endraw %}"
     fi
 
     # codesign with the first development cert we can find using its hash
     if [ -z "$NO_SIGN" ]; then
-        # codesign --options runtime --timestamp -strict  --sign $( security find-identity -v -p codesigning | grep -m 1 "Apple Development" | awk -F ' ' '{print $2}' ) {% raw %}{{TargetDir}}{% endraw %}/{% raw %}{{profile}}{% endraw %}/{% raw %}{{PluginName}}{% endraw %}.plugin
+        # codesign --options runtime --timestamp -strict  --sign $( security find-identity -v -p codesigning | grep -m 1 "Apple Development" | awk -F ' ' '{print $2}' ) "{% raw %}{{TargetDir}}{% endraw %}/{% raw %}{{profile}}{% endraw %}/{% raw %}{{PluginName}}{% endraw %}.plugin"
         # Apple Developer Programに入る必要があるが、開発中である為AdHoc署名で十分
         codesign --options runtime --timestamp -strict  --sign - "{% raw %}{{TargetDir}}{% endraw %}/{% raw %}{{profile}}{% endraw %}/{% raw %}{{PluginName}}{% endraw %}.plugin"
     fi
