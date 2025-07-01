@@ -1,5 +1,5 @@
 [package]
-name = "{{crate_name}}"
+name = "goeffect"
 version = "0.0.1"
 edition = "2021"
 
