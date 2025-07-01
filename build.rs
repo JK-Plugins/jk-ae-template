@@ -46,6 +46,6 @@ fn main() {
         ),
         Property::AE_Effect_Match_Name(EFFECT_NAME),
         Property::AE_Reserved_Info(8),
-        Property::AE_Effect_Support_URL("https://www.adobe.com"),
+        Property::AE_Effect_Support_URL("https://jokomanato.com/"),
     ]);
 }
