@@ -1,7 +1,8 @@
 [template]
 cargo_generate_version = "<=0.23.3"
-include = ["Cargo.toml","Justfile"]
 [placeholders]
 project_name = { prompt = "Enter project name", default = "myplugin", type = "string" }
 plugin_name = { prompt = "Enter plugin name(in AfterFX)", default = "JK MyPlugin", type = "string" }
 plugin_category = { prompt = "Enter plugin category", default = "JK Plugins F's", type = "string", choices = ["JK Plugins F's", "JK Plugins OLM", "JK Plugins Original"] }
+[hooks]
+post = ["post-script.rhai"]

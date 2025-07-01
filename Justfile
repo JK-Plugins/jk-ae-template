@@ -1,5 +1,7 @@
-BuildName        := "{{project_name}}"
-PluginName       := "{{plugin_name}}"
+set dotenv-load
+
+BuildName := env_var('PROJECT_NAME')
+PluginName := env_var('PLUGIN_NAME')
 BundleIdentifier := "com.adobe.AfterEffects.{{BuildName}}"
 BinaryName       := replace(lowercase(BuildName), "-", "_")
 
