@@ -16,9 +16,12 @@ cargo generate --git https://github.com/cargo-generate/cargo-generate.git
 ```
 
 コマンド実行時に聞かれるものについてです。
-project-name
-plugin_name
-plugin_category
+
+project-name : フォルダなどに使用される名前。
+
+plugin_name : AE上で出る名前。
+
+plugin_category : AE上で分別されるプラグインのカテゴリー。
 
 
 
