@@ -31,5 +31,8 @@ plugin_category : AE上で分別されるプラグインのカテゴリー。
 
 
 Justfileではcargo-generateと同じ{{}}がプレースホルダーの役割を担っているため、generateコマンドを打った際にバグが起きてしまいます。
-{ %raw% }{{ Justfile内の変数名 }}{ %endraw% }のように、エスケープしてください。
+```sh
+{ %raw% }{{ Justfile内の変数名 }}{ %endraw% }
+```
+のように、エスケープしてください。
 
