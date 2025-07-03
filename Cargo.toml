@@ -23,3 +23,7 @@ win_dbg_logger = "0.1.0"
 
 [dev-dependencies]
 image = "0.25.6"
+
+[package.metadata.jk_plugin]
+build_name = "{{crate_name}}"
+plugin_name = "{{plugin_name}}"
