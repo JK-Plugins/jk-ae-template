@@ -3,6 +3,10 @@ name = "{{crate_name}}"
 version = "0.0.1"
 edition = "2021"
 
+[package.metadata.jk_plugin]
+plugin_name = "{{plugin_name}}"
+identifier = "com.adobe.AfterEffects.{{crate_name}}"
+
 [profile.release]
 debug = true
 
@@ -23,7 +27,3 @@ win_dbg_logger = "0.1.0"
 
 [dev-dependencies]
 image = "0.25.6"
-
-[package.metadata.jk_plugin]
-build_name = "{{crate_name}}"
-plugin_name = "{{plugin_name}}"
